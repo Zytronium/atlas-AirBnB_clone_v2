@@ -18,6 +18,16 @@ class State(BaseModel, Base):
     else:
         name = ""
 
+        @property
+        def cities(self):
+            """Returns list of Cities in this state (cites where state_id = this state's id)"""
+            cities_in_state = []
+            all_cities = models.storage.all(City)
+            for city in all_cities.values():
+                if city.state_id == self.id:
+                    cities_in_state.append(city)
+            return cities_in_state
+
     def __init__(self, *args, **kwargs):
         """initializes state"""
         super().__init__(*args, **kwargs)
