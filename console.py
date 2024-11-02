@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-""" console """
+""" Console """
 
 import cmd
-from datetime import datetime
 import models
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -22,19 +21,23 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     def do_EOF(self, arg):
-        """Exits console"""
+        """Exits the console upon sending the end of file signal"""
         return True
 
     def emptyline(self):
-        """ overwriting the emptyline method """
+        """Overwriting the emptyline method"""
         return False
 
     def do_quit(self, arg):
-        """Quit command to exit the program"""
+        """Exits the program"""
+        return True
+
+    def do_exit(self, arg):
+        """Exits the program"""
         return True
 
     def _key_value_parser(self, args):
-        """creates a dictionary from a list of strings"""
+        """Creates a dictionary from a list of strings"""
         new_dict = {}
         for arg in args:
             if "=" in arg:
