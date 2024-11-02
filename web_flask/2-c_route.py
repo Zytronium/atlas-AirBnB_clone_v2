@@ -9,13 +9,18 @@ app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def index():
+def hello_hbnb():
     return "Hello HBNB!"
 
 
 @app.route('/hbnb', strict_slashes=False)
-def index2():
+def hbnb():
     return "HBNB"
+
+
+@app.route('/c/<text>', strict_slashes=False)
+def c_text(text):
+    return f"C {text.replace('_', ' ')}"
 
 
 if __name__ == '__main__':
