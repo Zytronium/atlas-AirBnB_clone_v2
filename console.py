@@ -20,13 +20,13 @@ class HBNBCommand(cmd.Cmd):
     """ HBNH console """
     prompt = '(hbnb) '
 
-    def do_EOF(self, arg):
-        """Exits the console upon sending the end of file signal"""
-        return True
-
     def emptyline(self):
         """Overwriting the emptyline method"""
         return False
+
+    def do_EOF(self, arg):
+        """Exits the console upon sending the end of file signal"""
+        return True
 
     def do_quit(self, arg):
         """Exits the program"""
@@ -108,6 +108,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def do_resetdb(self, args):  # for de-cluttering database while testing
+        """
+        Destroys all models in the database, completely emptying it.
+        This cannot be undone.
+        """
+        if input("Are you sure you want to delete everything in the database?\
+                  This cannot be undone. [y/N]: ").lower() == "y":
+            size = len(models.storage.all())
+            for model in list(models.storage.all().values()):
+                model.delete()
+            print(f"Database reset. {size} models have been deleted.")
+
     def do_all(self, arg):
         """Prints string representations of instances"""
         args = shlex.split(arg)
@@ -125,8 +137,14 @@ class HBNBCommand(cmd.Cmd):
         print(", ".join(obj_list), end="")
         print("]")
 
+    def do_size(self, args):
+        """
+        Displays the size of the database, or the number of objects saved.
+        """
+        print(len(models.storage.all()))
+
     def do_update(self, arg):
-        """Update an instance based on the class name, id, attribute & value"""
+        """Updates an instance based on the class name, id, attribute & value"""
         args = shlex.split(arg)
         integers = ["number_rooms", "number_bathrooms", "max_guest",
                     "price_by_night"]
