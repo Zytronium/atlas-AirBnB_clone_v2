@@ -2,8 +2,7 @@
 """
 flask thing for web server
 """
-from flask import Flask
-
+from flask import Flask, abort
 
 app = Flask(__name__)
 
@@ -33,6 +32,8 @@ def python_text(text='is cool'):
 def n_is_numb(n):
     if n.isdigit():
         return f"{n} is a number"
+    else:
+        abort(404)
 
 
 if __name__ == '__main__':
