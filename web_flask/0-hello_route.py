@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+flask thing for web server
+"""
 from flask import Flask
 
 
