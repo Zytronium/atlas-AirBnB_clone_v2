@@ -62,6 +62,7 @@ def states_list():
                            states=sorted(storage.all(State).values(),
                                          key=lambda x: x.name))
 
+
 @app.teardown_appcontext
 def teardown(exception):
     storage.close()
