@@ -60,7 +60,7 @@ def n_odd_or_even(n):
 def states_list():
     return render_template("7-states_list.html",
                            states=sorted(storage.all(State).values(),
-                                         key=lambda x: x.name))
+                                         key=lambda state: state.name))
 
 
 @app.teardown_appcontext
