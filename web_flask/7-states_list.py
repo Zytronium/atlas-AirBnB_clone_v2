@@ -55,6 +55,7 @@ def n_odd_or_even(n):
     else:
         abort(404)
 
+
 @app.route('/states_list', strict_slashes=False)
 def states_list():
     return render_template("7-states_list.html",
